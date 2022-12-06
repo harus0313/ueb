@@ -1,15 +1,53 @@
 ﻿@page "/"
+@inject IJSRuntime JSRuntime;
 
-<PageTitle>Index</PageTitle>
+<PageTitle>boost.usefuledge.com</PageTitle>
 
-<h1>Hello, world! 123</h1>
+<h1 id="Title">Web Command Gate</h1>
 
-Welcome to your new app.
+<div id="CommandArea">
+    <input type="text" id="CommandTextbox" @bind-value="commandString" @bind-value:event="oninput" 
+    @onkeydown="ExecCommand" /> 
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+
+</div>
+
+<div>@OutputString</div>
 
 
 @code {
 
+    public string commandString {get; set;}
+    string OutputString = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("InitializeTopPage");
+    }
+
+
+    async Task ExecCommand(KeyboardEventArgs e)
+    {
+
+        Console.WriteLine(commandString);
+
+        if(e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            if(commandString == "") return;            
+
+            string[] commandArray = ueBoot.DataMode.ParseCommand.Parse(commandString);
+            string funcLang = ueBoot.DataMode.ParseCommand.FuncLanguage(commandArray);
+            string funcName = ueBoot.DataMode.ParseCommand.FunctionName(commandArray);
+            string funcParam = ueBoot.DataMode.ParseCommand.FunctionParameter(commandArray);
+
+
+            await JSRuntime.InvokeVoidAsync(funcName, funcParam);
+        }
+
+    }
+
+
 
 }
+
+
