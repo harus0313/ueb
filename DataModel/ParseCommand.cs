@@ -37,7 +37,7 @@ namespace ueBoot.DataMode
             if(command[0].ToLower() == "gmail")
             {
                 if(command[1].ToLower() == "search") func = "GmailSearch";
-                if(c)
+                if(command[1].ToLower() == "new") func = "GmailNew";
             }
 
             
