@@ -21,6 +21,7 @@ namespace ueBoot.DataMode
             if(command[0].ToLower() == "gmail")
             {
                 if(command[1].ToLower() == "search") lang = "js";
+                if(command[1].ToLower() == "new") lang = "js";
             }
 
             lang = "js";
@@ -36,6 +37,7 @@ namespace ueBoot.DataMode
             if(command[0].ToLower() == "gmail")
             {
                 if(command[1].ToLower() == "search") func = "GmailSearch";
+                if(c)
             }
 
             

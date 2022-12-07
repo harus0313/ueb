@@ -7,8 +7,14 @@ function InitializeTopPage() {
 function GmailSearch(searchStr)
 {
     let url = "https://mail.google.com/mail/mu/mp/122/#tl/search/" + searchStr;
-    console.log(url);
     window.open(url, '_blank');
 
     
+}
+
+function GmailNew() {
+
+    let url = "https://mail.google.com/mail/?view=cm&fs=1"
+    window.open(url, '_blank');
+
 }
