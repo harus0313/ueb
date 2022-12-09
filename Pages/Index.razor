@@ -41,8 +41,9 @@
             string funcName = ueBoot.DataMode.ParseCommand.FunctionName(commandArray);
             string funcParam = ueBoot.DataMode.ParseCommand.FunctionParameter(commandArray);
 
+            if(funcName != "") await JSRuntime.InvokeVoidAsync(funcName, funcParam);
 
-            await JSRuntime.InvokeVoidAsync(funcName, funcParam);
+            
         }
 
     }

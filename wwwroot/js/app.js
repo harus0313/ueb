@@ -18,3 +18,19 @@ function GmailNew() {
     window.open(url, '_blank');
 
 }
+
+function TwitterNew()
+{
+    let url = "https://twitter.com/intent/tweet";
+    window.open(url, '_blank');
+}
+
+function RakutenSearch(keyword)
+{
+    let url = "https://search.rakuten.co.jp/search/mall/" + keyword + "/";
+    window.open(url, '_blank');
+}
+
+
+
+

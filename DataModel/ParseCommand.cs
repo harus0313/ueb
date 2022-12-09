@@ -23,9 +23,14 @@ namespace ueBoot.DataMode
                 if(command[1].ToLower() == "search") lang = "js";
                 if(command[1].ToLower() == "new") lang = "js";
             }
-
-            lang = "js";
-            lang = "cs";
+            else if(command[0].ToLower() == "twitter")
+            {
+                if(command[1].ToLower() == "new") lang = "js";
+            }
+            else if(command[0].ToLower() == "rakuten")
+            {
+                if(command[1].ToLower() == "search") lang = "js";
+            }
 
             return lang;
         }
@@ -39,7 +44,14 @@ namespace ueBoot.DataMode
                 if(command[1].ToLower() == "search") func = "GmailSearch";
                 if(command[1].ToLower() == "new") func = "GmailNew";
             }
-
+            else if(command[0].ToLower() == "twitter")
+            {
+                if(command[1].ToLower() == "new") func = "TwitterNew";
+            }
+            else if(command[0].ToLower() == "rakuten")
+            {
+                if(command[1].ToLower() == "search") func = "RakutenSearch";
+            }
             
             return func;
         }
@@ -51,6 +63,13 @@ namespace ueBoot.DataMode
             if(command[0].ToLower() == "gmail")
             {
                 if(command[1].ToLower() == "search") param = command[2];
+            }
+            else
+            {
+                if(command[0].ToLower() == "rakuten")
+                {
+                    if(command[1].ToLower() == "search") param = command[2];
+                }
             }
 
             return param;
