@@ -70,6 +70,10 @@ namespace ueb.DataModel
                             commandInfo.FunctionLanguage = "js";
                             commandInfo.FunctionName = "BootstrapDocs";
                             break;
+                        case "cdn":
+                            commandInfo.FunctionLanguage = "js";
+                            commandInfo.FunctionName = "BootstrapCDN";
+                            break;
                     }
                     break;
                 
