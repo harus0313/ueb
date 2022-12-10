@@ -1,7 +1,15 @@
-namespace ueBoot.DataMode
+namespace ueb.DataModel
 {
     public class ParseCommand
     {
+
+        public class CommandInfo
+        {
+            public string FunctionLanguage;
+            public string FunctionName;
+            public string Parameter;
+        }
+
         public static string[] Parse(string commandString)
         {
             string[] commandArray = commandString.Split(" ");
@@ -15,65 +23,61 @@ namespace ueBoot.DataMode
 
         }
 
-        public static string FuncLanguage(string[] command)
+        public static CommandInfo GetCommandInfo(string command)
         {
-            string lang = "";
-            if(command[0].ToLower() == "gmail")
+            CommandInfo commandInfo = new CommandInfo();
+            string[] commandArray = Parse(command);
+
+            switch (commandArray[0].ToLower())
             {
-                if(command[1].ToLower() == "search") lang = "js";
-                if(command[1].ToLower() == "new") lang = "js";
-            }
-            else if(command[0].ToLower() == "twitter")
-            {
-                if(command[1].ToLower() == "new") lang = "js";
-            }
-            else if(command[0].ToLower() == "rakuten")
-            {
-                if(command[1].ToLower() == "search") lang = "js";
+                case "gmail":
+                    switch (commandArray[1].ToLower())
+                    {
+                        case "search":
+                            commandInfo.FunctionLanguage = "js";
+                            commandInfo.FunctionName = "GmailSearch";
+                            commandInfo.Parameter = commandArray[2];
+                            break;
+                        case "new":
+                            commandInfo.FunctionLanguage = "js";
+                            commandInfo.FunctionName = "GmailNew";
+                            break;
+                    }
+                    break;
+                case "twitter":
+                    switch (commandArray[1].ToLower())
+                    {
+                        case "new":
+                            commandInfo.FunctionLanguage = "js";
+                            commandInfo.FunctionName = "TwitterNew";
+                            break;
+                    }
+                    break;
+                case "rakuten":
+                    switch (commandArray[1].ToLower())
+                    {
+                        case "search":
+                            commandInfo.FunctionLanguage = "js";
+                            commandInfo.FunctionName = "RakutenSearch";
+                            commandInfo.Parameter = commandArray[2];
+                            break;
+                    }
+                    break;
+                case "bootstrap":
+                    switch (commandArray[1].ToLower())
+                    {
+                        case "docs":
+                            commandInfo.FunctionLanguage = "js";
+                            commandInfo.FunctionName = "BootstrapDocs";
+                            break;
+                    }
+                    break;
+                
             }
 
-            return lang;
+            return commandInfo;
         }
 
-        public static string FunctionName(string[] command)
-        {
-            string func = "";
-
-            if(command[0].ToLower() == "gmail")
-            {
-                if(command[1].ToLower() == "search") func = "GmailSearch";
-                if(command[1].ToLower() == "new") func = "GmailNew";
-            }
-            else if(command[0].ToLower() == "twitter")
-            {
-                if(command[1].ToLower() == "new") func = "TwitterNew";
-            }
-            else if(command[0].ToLower() == "rakuten")
-            {
-                if(command[1].ToLower() == "search") func = "RakutenSearch";
-            }
-            
-            return func;
-        }
-
-        public static string FunctionParameter(string[] command)
-        {
-            string param = "";
-
-            if(command[0].ToLower() == "gmail")
-            {
-                if(command[1].ToLower() == "search") param = command[2];
-            }
-            else
-            {
-                if(command[0].ToLower() == "rakuten")
-                {
-                    if(command[1].ToLower() == "search") param = command[2];
-                }
-            }
-
-            return param;
-        }
     }
 
 }

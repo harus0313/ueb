@@ -31,6 +31,9 @@ function RakutenSearch(keyword)
     window.open(url, '_blank');
 }
 
-
+function BootstrapDocs() {
+    let url = "https://getbootstrap.com/docs/5.2/getting-started/introduction/";
+    window.open(url, '_blank');
+}
 
 

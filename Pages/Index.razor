@@ -12,7 +12,7 @@
 
 </div>
 
-<div>@OutputString</div>
+<div id="StdOut">@OutputString</div>
 
 
 @code {
@@ -34,14 +34,14 @@
 
         if(e.Code == "Enter" || e.Code == "NumpadEnter")
         {
-            if(commandString == "") return;            
+            if(commandString == "") return;
+            DataModel.ParseCommand.CommandInfo commandInfo = new DataModel.ParseCommand.CommandInfo();
+            commandInfo = DataModel.ParseCommand.GetCommandInfo(commandString);            
 
-            string[] commandArray = ueBoot.DataMode.ParseCommand.Parse(commandString);
-            string funcLang = ueBoot.DataMode.ParseCommand.FuncLanguage(commandArray);
-            string funcName = ueBoot.DataMode.ParseCommand.FunctionName(commandArray);
-            string funcParam = ueBoot.DataMode.ParseCommand.FunctionParameter(commandArray);
-
-            if(funcName != "") await JSRuntime.InvokeVoidAsync(funcName, funcParam);
+            if(commandInfo.FunctionLanguage == "js")
+            {
+                await JSRuntime.InvokeVoidAsync(commandInfo.FunctionName, commandInfo.Parameter);
+            }
 
             
         }
