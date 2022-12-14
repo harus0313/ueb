@@ -12,12 +12,15 @@
 
 </div>
 
+<div id="CmdHistory"></div>
+
 <div id="StdOut">@OutputString</div>
 
 
 @code {
 
     public string commandString {get; set;}
+    
     string OutputString = "";
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
